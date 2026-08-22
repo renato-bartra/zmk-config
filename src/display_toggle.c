@@ -26,9 +26,9 @@
 #include <drivers/behavior.h>
 #include <zmk/behavior.h>
 
-LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
+LOG_MODULE_REGISTER(display_toggle, CONFIG_LOG_DEFAULT_LEVEL);
 
-#if IS_ENABLED(CONFIG_LILY58PRO_DISPLAY_TOGGLE) && DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
+#if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
 
 static const struct device *display_dev;
 static bool display_is_on = false;
@@ -83,4 +83,4 @@ BEHAVIOR_DT_INST_DEFINE(0, NULL, NULL, NULL, NULL, POST_KERNEL,
                         CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,
                         &behavior_display_toggle_driver_api);
 
-#endif /* CONFIG_LILY58PRO_DISPLAY_TOGGLE && DT_HAS_COMPAT_STATUS_OKAY */
+#endif /* DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT) */

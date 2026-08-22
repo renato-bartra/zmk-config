@@ -1,1 +1,1 @@
-target_sources_ifdef(CONFIG_LILY58PRO_DISPLAY_TOGGLE app PRIVATE display_toggle.c)
+target_sources(app PRIVATE display_toggle.c)
