@@ -1,0 +1,8 @@
+# Copyright (c) 2024 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+description: Lily58 Pro Display Toggle Behavior
+
+compatible: "lily58pro,behavior-display-toggle"
+
+include: zero_param.yaml

@@ -8,8 +8,35 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
+#include <combos.dtsi>
 
 / {
+    // Custom behavior: &display_toggle
+    // - Bound to the both-space combo below (key positions 53 = left space,
+    //   54 = right space).
+    // - On press: blanks the OLED if it's on, unblanks if it's off.
+    // - The 60s auto-off is handled by ZMK's activity-state machine via
+    //   CONFIG_ZMK_DISPLAY_BLANK_ON_IDLE=y in lily58.conf.
+    behaviors {
+        display_toggle: status_display_toggle {
+            compatible = "lily58pro,behavior-display-toggle";
+            #binding-cells = <0>;
+            display-name = "Display Toggle";
+        };
+    };
+
+    // Combos: trigger custom behaviors from simultaneous key presses.
+    combos {
+        compatible = "zmk,combos";
+
+        // Both SPACE keys pressed within 50ms = toggle the OLED.
+        combo_display_toggle {
+            timeout-ms = <50>;
+            key-positions = <53 54>;
+            bindings = <&display_toggle>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -85,21 +112,21 @@
          *   row 3  z=36..41 | z=42..43 inner thumbs | z=44..49
          *   row 4  z=50..53 | z=54..57
          */
-//
-//       adjust_layer {
-//           bindings = <
-// &none &none &none &none &none &none          &none &none &none &none &none &none
-// &rgb_ug RGB_TOG 0 &rgb_ug RGB_HUI 0 &rgb_ug RGB_SAI 0 &rgb_ug RGB_BRI 0 &none &none
-//                                                                   &none &none &kp SYS_WAKE &kp SYS_SLEEP &kp SYS_PWR &none
-// &rgb_ug RGB_EFF 0 &rgb_ug RGB_HUD 0 &rgb_ug RGB_SAD 0 &rgb_ug RGB_BRD 0 &none &none
-//                                                                   &none &kp C_PREV &kp C_PP &kp C_NEXT &kp C_MUTE &kp LS(LC(ESC))
-// &trans   &none &none &none &none &none &none &none
-//                                                                 &kp C_VOL_DN &kp KC_MSEL_EQUIV &kp C_VOL_UP &none &kp LC(LS(LG(B))) &none
-//                      &trans &trans &trans &trans &trans &trans &trans &trans
-//           >;
-//
-//           sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
-//       };
-//
+        /*
+         *adjust_layer {
+         *    bindings = <
+         *&none &none &none &none &none &none          &none &none &none &none &none &none
+         *&rgb_ug RGB_TOG 0 &rgb_ug RGB_HUI 0 &rgb_ug RGB_SAI 0 &rgb_ug RGB_BRI 0 &none &none
+         *                                                                &none &none &kp SYS_WAKE &kp SYS_SLEEP &kp SYS_PWR &none
+         *&rgb_ug RGB_EFF 0 &rgb_ug RGB_HUD 0 &rgb_ug RGB_SAD 0 &rgb_ug RGB_BRD 0 &none &none
+         *                                                                &none &kp C_PREV &kp C_PP &kp C_NEXT &kp C_MUTE &kp LS(LC(ESC))
+         *&trans   &none &none &none &none &none &none &none
+         *                                                                &kp C_VOL_DN &kp KC_MSEL_EQUIV &kp C_VOL_UP &none &kp LC(LS(LG(B))) &none
+         *                    &trans &trans &trans &trans &trans &trans &trans &trans
+         *            >;
+         *
+         *            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+         *        };
+         */
     };
 };
