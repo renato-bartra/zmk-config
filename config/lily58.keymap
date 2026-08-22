@@ -34,12 +34,12 @@
         lower_layer {
 // ------------------------------------------------------------------------------------------------------------
 // | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   |      |       |       |      |       |  DEL  |
-// |       |     |     |      |      |      |                   | PGUP | HOME  |  UP   | END  |   +   |   ]   |
-// |       |     |     |      |      |      |                   | PGDN | LEFT  | DOWN  | RIGHT|   -   |   \   |
+// |       |     |     |      |      |      |                   | PGUP | HOME  |  UP   | END  |   +   |       |
+// |       |     |     |      |      |      |                   | PGDN | LEFT  | DOWN  | RIGHT|   -   |       |
 // |       |     |     |      |      |BT NXT|  GRAVE|  |  EQUAL |      |       |   *   |      |       |       |
 //                     |      |      |      |       |  |        |      |       |       |      |
             bindings = <
-&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4          &kp NONE &kp NONE &kp NONE &kp NONE &kp NONE &kp DEL
+&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4         &kp NONE &kp NONE &kp NONE &kp NONE &kp NONE &kp DEL
 &trans   &kp NONE &kp NONE &kp NONE &kp NONE &kp NONE          &kp PG_UP &kp HOME &kp UP   &kp END   &kp KP_PLUS &kp RBKT
 &trans   &kp NONE &kp NONE &kp NONE &kp NONE &kp NONE          &kp PG_DN &kp LEFT &kp DOWN &kp RIGHT &kp KP_MINUS &kp BSLH
 &trans   &kp NONE &kp NONE &kp NONE &kp NONE &bt BT_NXT  &kp GRAVE &kp EQUAL &kp NONE &kp NONE &kp NONE &kp NONE &kp KP_ASTERISK &kp NONE
